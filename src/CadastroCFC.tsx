@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CadastroClinicas.css';
 
+
 interface RegionalData {
   municipio: string;
   regional: string;
