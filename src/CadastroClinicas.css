@@ -124,3 +124,61 @@
     transform: rotate(360deg);
   }
 }
+
+.row-count {
+  margin-top: 20px; /* Espaçamento acima da contagem */
+  font-size: 16px; /* Tamanho do texto */
+  font-weight: bold; /* Texto em negrito */
+  color: #4CAF50; /* Cor verde para consistência */
+  text-align: left; /* Alinha o texto à direita */
+  background-color: #f9f9f9; /* Fundo claro */
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 4px; /* Bordas arredondadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+
+.filters-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f9f9f9; /* Fundo claro */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.filters select {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333; /* Cor do texto */
+  background-color: #fff; /* Fundo branco */
+  border: 2px solid #ddd; /* Bordas suaves */
+  border-radius: 8px; /* Bordas arredondadas */
+  transition: all 0.3s ease; /* Transição para interações */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  outline: none; /* Remove borda azul no foco */
+}
+
+.filters select:hover {
+  border-color: #4CAF50; /* Borda verde no hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+}
+
+.filters select:focus {
+  border-color: #4CAF50; /* Destaque no foco */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Sombra de foco */
+}
+
+.row-count {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4CAF50; /* Verde para combinar com o tema */
+  padding: 8px 12px;
+  background-color: #fff;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
