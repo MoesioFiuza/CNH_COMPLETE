@@ -20,6 +20,7 @@ const App: React.FC = () => {
     { url: "", title: "Base de Dados" },
   ];
 
+  // Estado para controle de login e navegação
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
     const saved = localStorage.getItem('isLoggedIn');
     return saved === 'true';
@@ -30,31 +31,32 @@ const App: React.FC = () => {
   const [selectedPage, setSelectedPage] = useState<string>('Login');
   const [isLoading, setIsLoading] = useState<boolean>(false); // Estado global de carregamento
 
+  // Função para buscar dados de uma planilha
   const fetchSheetData = async (range: string) => {
-    setIsLoading(true); // Inicia o carregamento
+    setIsLoading(true); // Ativa o círculo de loading
     try {
       const response = await fetch(`http://127.0.0.1:8000/obter-planilha?aba=${range}`);
       const result = await response.json();
       if (response.ok) {
-        const valores = result.valores;
-        setSheetData(valores);
+        setSheetData(result.valores);
       } else {
         alert("Erro ao obter dados da planilha: " + result.detail);
       }
     } catch (error) {
       alert("Erro ao obter dados da planilha: " + error);
     } finally {
-      setIsLoading(false); // Finaliza o carregamento
+      setIsLoading(false); // Desativa o círculo de loading
     }
   };
 
+  // Função para salvar alterações na planilha
   const saveChanges = async () => {
     if (!selectedSheet) {
       alert("Selecione uma planilha primeiro!");
       return;
     }
 
-    setIsLoading(true); // Inicia o carregamento
+    setIsLoading(true); 
     const data = {
       aba: selectedSheet.title + "!A1",
       valores: sheetData,
@@ -76,16 +78,13 @@ const App: React.FC = () => {
         alert("Erro ao salvar alterações: " + result.detail);
       }
     } catch (error) {
-      if (error instanceof Error) {
-        alert("Erro ao salvar alterações: " + error.message);
-      } else {
-        alert("Erro desconhecido ao salvar alterações");
-      }
+      alert("Erro ao salvar alterações: " + error);
     } finally {
-      setIsLoading(false); // Finaliza o carregamento
+      setIsLoading(false); // Desativa o círculo de loading
     }
   };
 
+  // Função para alternar entre planilhas
   const handleSheetSelect = (sheet: Sheet | null) => {
     if (sheet) {
       setSelectedSheet(sheet);
@@ -94,6 +93,7 @@ const App: React.FC = () => {
     setSelectedPage(sheet?.title || 'Login');
   };
 
+  // Adiciona uma linha em branco
   const addBlankRow = () => {
     if (sheetData.length > 0) {
       const blankRow = new Array(sheetData[0].length).fill('');
@@ -103,25 +103,31 @@ const App: React.FC = () => {
     }
   };
 
+  // Atualiza o valor de uma célula
   const handleInputChange = (rowIndex: number, cellIndex: number, value: string) => {
     const newSheetData = [...sheetData];
     newSheetData[rowIndex][cellIndex] = value;
     setSheetData(newSheetData);
   };
 
+  // Lida com login bem-sucedido
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     localStorage.setItem('isLoggedIn', 'true');
+    setSelectedPage('Usuários'); // Define a página inicial após login
   };
 
+  // Realiza o logout
   const handleLogout = () => {
     setIsLoggedIn(false);
     setSelectedSheet(null);
     setSheetData([]);
     setSidebarClass('');
     localStorage.removeItem('isLoggedIn');
+    setSelectedPage('Login'); // Redireciona para login após logout
   };
 
+  // Exclui uma linha da planilha
   const handleDeleteRow = (rowIndex: number) => {
     const newSheetData = [...sheetData];
     newSheetData.splice(rowIndex, 1);
