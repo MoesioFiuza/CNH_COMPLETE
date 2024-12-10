@@ -24,6 +24,7 @@ body {
   padding: 10px;
   text-align: left;
   word-wrap: break-word; /* Quebra de palavras longas */
+  position: relative; /* Necessário para o resizer */
 }
 
 .base-dados-table th {
@@ -53,6 +54,22 @@ body {
   border-color: #4CAF50;
   outline: none;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Estilo para o resizer */
+.resizer {
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: col-resize; /* Cursor para indicar redimensionamento */
+  user-select: none;
+  background-color: transparent; /* Evita interferência visual */
+}
+
+.resizer:hover {
+  background-color: #ccc; /* Realce visual ao passar o mouse */
 }
 
 /* Botões */
