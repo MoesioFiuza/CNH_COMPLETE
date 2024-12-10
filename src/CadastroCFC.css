@@ -1,9 +1,6 @@
 .cadastro-cfc-container {
   padding: 20px; /* Espaçamento interno */
   font-family: Arial, sans-serif; /* Fonte padrão */
-  background-color: #f9f9f9; /* Fundo claro */
-  min-height: 100vh; /* Garante que a página preencha toda a altura */
-  box-sizing: border-box; /* Inclui padding no cálculo do tamanho */
 }
 
 .base-dados-table {
@@ -21,20 +18,12 @@
   padding: 10px; /* Espaçamento interno */
   text-align: left; /* Alinhamento do texto */
   position: relative; /* Necessário para colocar o "resizer" sobre as colunas */
-  word-wrap: break-word; /* Quebra de linha em palavras longas */
 }
 
 .base-dados-table th {
   background-color: #4CAF50; /* Cor de fundo verde */
   color: white; /* Texto branco */
   text-transform: uppercase; /* Texto em maiúsculas */
-  font-size: 14px; /* Tamanho consistente do texto */
-}
-
-.base-dados-table td {
-  background-color: #ffffff; /* Fundo branco */
-  font-size: 14px; /* Tamanho consistente do texto */
-  color: #333; /* Cor do texto */
 }
 
 .base-dados-table input,
@@ -46,13 +35,6 @@
   box-sizing: border-box; /* Inclui padding no cálculo do tamanho */
   background-color: #fdfdfd; /* Fundo branco */
   font-size: 14px; /* Tamanho consistente do texto */
-  outline: none; /* Remove a borda azul ao focar */
-  transition: border-color 0.3s ease; /* Transição ao focar */
-}
-
-.base-dados-table input:focus,
-.base-dados-table select:focus {
-  border-color: #4CAF50; /* Cor da borda ao focar */
 }
 
 .base-dados-table input[readonly] {
@@ -76,18 +58,13 @@
   cursor: pointer; /* Cursor de botão */
   font-size: 14px; /* Tamanho do texto */
   font-weight: bold; /* Negrito para destaque */
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Efeito de transição */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Efeito de transição ao passar o mouse */
 }
 
 .button-container button:hover {
   background-color: #45a049; /* Fundo mais escuro no hover */
   transform: scale(1.05); /* Aumenta o botão no hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque no hover */
-}
-
-.button-container button:active {
-  transform: scale(0.95); /* Efeito de clique */
-  background-color: #3e8e41; /* Fundo ainda mais escuro */
 }
 
 .base-dados-table th .resizer {
@@ -99,28 +76,7 @@
   cursor: ew-resize; /* Cursor de redimensionamento horizontal */
 }
 
-.loading-container {
-  display: flex; /* Alinhamento central */
-  justify-content: center; /* Alinhamento horizontal */
-  align-items: center; /* Alinhamento vertical */
-  height: 100vh; /* Altura total da viewport */
-  background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
-}
-
-.loading-circle {
-  border: 6px solid #f3f3f3; /* Fundo do círculo */
-  border-top: 6px solid #ffc107; /* Amarelo */
-  border-radius: 50%; /* Círculo */
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite; /* Animação de rotação */
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.base-dados-table th,
+.base-dados-table td {
+  position: relative;
 }
