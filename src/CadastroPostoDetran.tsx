@@ -138,4 +138,5 @@ const CadastroPostoDetran: React.FC = () => {
   );
 };
 
+
 export default CadastroPostoDetran;
