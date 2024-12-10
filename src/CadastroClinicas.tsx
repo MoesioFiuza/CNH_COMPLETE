@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './CadastroClinicas.css';
 
+
+// Definição da interface RegionalData para tipar os dados de município e regional
 interface RegionalData {
   municipio: string;
   regional: string;
 }
 
+// Componente funcional CadastroClinicas
 const CadastroClinicas: React.FC = () => {
   const [clinicasData, setClinicasData] = useState<string[][]>([['', '', '', '', '', '', '']]);
   const [regionais, setRegionais] = useState<RegionalData[]>([]);
@@ -14,6 +17,8 @@ const CadastroClinicas: React.FC = () => {
   const [selectedCity, setSelectedCity] = useState<string>('');
   const [selectedRegional, setSelectedRegional] = useState<string>('');
 
+
+  // Função para buscar os dados das clínicas
   const fetchClinicasData = async () => {
     setIsLoading(true);
     try {
@@ -32,6 +37,8 @@ const CadastroClinicas: React.FC = () => {
     }
   };
 
+
+  // Função para buscar os dados das regionais a partir de um CSV externo
   const fetchRegionais = async () => {
     setIsLoading(true);
     try {
@@ -66,6 +73,8 @@ const CadastroClinicas: React.FC = () => {
 
   const addNewRow = () => {
     setClinicasData([...clinicasData, ['', '', '', '', '', '', '']]);
+    setSelectedCity('');
+    setSelectedRegional('');
   };
 
   const handleSubmit = async () => {
@@ -117,15 +126,16 @@ const CadastroClinicas: React.FC = () => {
 
   const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCity(e.target.value);
-    setSelectedRegional(''); // Reset regional filter when city changes
+    setSelectedRegional(''); 
   };
 
   const handleRegionalChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedRegional(e.target.value);
-    setSelectedCity(''); // Reset city filter when regional changes
+    setSelectedCity(''); 
   };
 
   const filteredData = clinicasData.filter((row) => {
+    const isRowEmpty = row.every((cell) => cell === '');
     const cityMatches = selectedCity ? row[5] === selectedCity : true;
     const regionalMatches = selectedRegional
       ? regionais.find((regional) => regional.municipio === row[5])?.regional === selectedRegional
