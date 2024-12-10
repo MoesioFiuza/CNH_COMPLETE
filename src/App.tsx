@@ -5,6 +5,8 @@ import CadastroCFC from './CadastroCFC';
 import CadastroClinicas from './CadastroClinicas';
 import CadastroPostoDetran from './CadastroPostoDetran';
 import BaseDeDados from './BaseDeDados';
+import Contratacao from './Contratacao';
+
 
 interface Sheet {
   url: string;
@@ -18,45 +20,47 @@ const App: React.FC = () => {
     { url: "https://docs.google.com/spreadsheets/d/1L1uxINmH3tK8KK1W7VAoBP11bYd4ry_pPqj7xp2ImU8/export?format=csv&gid=75694551", title: "Cadastro Clínicas" },
     { url: "https://docs.google.com/spreadsheets/d/1L1uxINmH3tK8KK1W7VAoBP11bYd4ry_pPqj7xp2ImU8/export?format=csv&gid=1219973305", title: "Cadastro Posto Detran" },
     { url: "", title: "Base de Dados" },
+    {url: "", title: "Contratação"},
   ];
 
-  // Estado para controle de login e navegação
+  const [columnWidths, setColumnWidths] = useState<number[]>([]);
+
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
     const saved = localStorage.getItem('isLoggedIn');
     return saved === 'true';
   });
+
   const [selectedSheet, setSelectedSheet] = useState<Sheet | null>(null);
   const [sheetData, setSheetData] = useState<string[][]>([]);
   const [sidebarClass, setSidebarClass] = useState<string>('');
   const [selectedPage, setSelectedPage] = useState<string>('Login');
-  const [isLoading, setIsLoading] = useState<boolean>(false); // Estado global de carregamento
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Função para buscar dados de uma planilha
   const fetchSheetData = async (range: string) => {
-    setIsLoading(true); // Ativa o círculo de loading
+    setIsLoading(true);
     try {
       const response = await fetch(`http://127.0.0.1:8000/obter-planilha?aba=${range}`);
       const result = await response.json();
       if (response.ok) {
         setSheetData(result.valores);
+        setColumnWidths(new Array(result.valores[0]?.length || 0).fill(150)); // Inicializa larguras de coluna
       } else {
         alert("Erro ao obter dados da planilha: " + result.detail);
       }
     } catch (error) {
       alert("Erro ao obter dados da planilha: " + error);
     } finally {
-      setIsLoading(false); // Desativa o círculo de loading
+      setIsLoading(false);
     }
   };
 
-  // Função para salvar alterações na planilha
   const saveChanges = async () => {
     if (!selectedSheet) {
       alert("Selecione uma planilha primeiro!");
       return;
     }
 
-    setIsLoading(true); 
+    setIsLoading(true);
     const data = {
       aba: selectedSheet.title + "!A1",
       valores: sheetData,
@@ -80,20 +84,20 @@ const App: React.FC = () => {
     } catch (error) {
       alert("Erro ao salvar alterações: " + error);
     } finally {
-      setIsLoading(false); // Desativa o círculo de loading
+      setIsLoading(false);
     }
   };
 
-  // Função para alternar entre planilhas
   const handleSheetSelect = (sheet: Sheet | null) => {
     if (sheet) {
       setSelectedSheet(sheet);
-      fetchSheetData(sheet.title + "!A1:Z100000");
+      if (sheet.title !== "Base de Dados" && sheet.title !== "Contratação") {
+        fetchSheetData(sheet.title + "!A1:Z100000");
+      }
     }
     setSelectedPage(sheet?.title || 'Login');
   };
 
-  // Adiciona uma linha em branco
   const addBlankRow = () => {
     if (sheetData.length > 0) {
       const blankRow = new Array(sheetData[0].length).fill('');
@@ -103,31 +107,47 @@ const App: React.FC = () => {
     }
   };
 
-  // Atualiza o valor de uma célula
   const handleInputChange = (rowIndex: number, cellIndex: number, value: string) => {
     const newSheetData = [...sheetData];
     newSheetData[rowIndex][cellIndex] = value;
     setSheetData(newSheetData);
   };
 
-  // Lida com login bem-sucedido
+  const handleResize = (index: number, e: React.MouseEvent<HTMLDivElement>): void => {
+    const startX = e.clientX;
+    const startWidth = columnWidths[index] || 150;
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      const newWidth = startWidth + (moveEvent.clientX - startX);
+      const updatedWidths = [...columnWidths];
+      updatedWidths[index] = Math.max(newWidth, 50);
+      setColumnWidths(updatedWidths);
+    };
+
+    const onMouseUp = () => {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  };
+
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
     localStorage.setItem('isLoggedIn', 'true');
-    setSelectedPage('Usuários'); // Define a página inicial após login
+    setSelectedPage('Usuários');
   };
 
-  // Realiza o logout
   const handleLogout = () => {
     setIsLoggedIn(false);
     setSelectedSheet(null);
     setSheetData([]);
     setSidebarClass('');
     localStorage.removeItem('isLoggedIn');
-    setSelectedPage('Login'); // Redireciona para login após logout
+    setSelectedPage('Login');
   };
 
-  // Exclui uma linha da planilha
   const handleDeleteRow = (rowIndex: number) => {
     const newSheetData = [...sheetData];
     newSheetData.splice(rowIndex, 1);
@@ -171,7 +191,16 @@ const App: React.FC = () => {
                     <thead>
                       <tr>
                         {sheetData[0]?.map((header, index) => (
-                          <th key={index}>{header}</th>
+                          <th
+                            key={index}
+                            style={{ width: columnWidths[index] || '150px', position: 'relative' }}
+                          >
+                            {header}
+                            <div
+                              className="resizer"
+                              onMouseDown={(e) => handleResize(index, e)}
+                            ></div>
+                          </th>
                         ))}
                         <th>Ações</th>
                       </tr>
@@ -184,7 +213,9 @@ const App: React.FC = () => {
                               <input
                                 type="text"
                                 value={cell}
-                                onChange={(e) => handleInputChange(rowIndex + 1, cellIndex, e.target.value)}
+                                onChange={(e) =>
+                                  handleInputChange(rowIndex + 1, cellIndex, e.target.value)
+                                }
                               />
                             </td>
                           ))}
@@ -206,6 +237,7 @@ const App: React.FC = () => {
               {selectedPage === 'Cadastro Clínicas' && <CadastroClinicas />}
               {selectedPage === 'Cadastro Posto Detran' && <CadastroPostoDetran />}
               {selectedPage === 'Base de Dados' && <BaseDeDados />}
+              {selectedPage === 'Contratação' && <Contratacao />}
             </div>
           </div>
         )}

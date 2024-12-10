@@ -56,11 +56,11 @@ def preencher_grupo_na_base_de_dados():
         municipio_index = headers.index("MUNICÍPIO")
         grupo_column = "GRUPO"
 
-        # Adiciona o cabeçalho "GRUPO" se não existir
+        
         if grupo_column not in headers:
             headers.append(grupo_column)
 
-        # Atualiza as linhas com o grupo correspondente
+        
         updated_values = [headers]
         for row in valores[1:]:
             municipio = row[municipio_index]
@@ -70,7 +70,7 @@ def preencher_grupo_na_base_de_dados():
             row[headers.index(grupo_column)] = grupo
             updated_values.append(row)
 
-        # Atualiza a aba com os novos dados
+        
         planilha.values().update(
             spreadsheetId=ID_PLANILHA,
             range="Base de Dados!A1",
