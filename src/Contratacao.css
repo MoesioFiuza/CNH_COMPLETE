@@ -100,7 +100,6 @@ button:hover {
   border-radius: 5px;
   background-color: #f9f9f9;
 }
-
 .filter-dropdown:focus {
   outline: none;
   border-color: #007bff;
