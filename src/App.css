@@ -1,13 +1,155 @@
-/* Estilos gerais do corpo */
+/* 
+
+  Estilos para o layout principal da aplicação e componentes.
+
+  body:
+    - Define a cor de fundo, remove margem e padding, oculta overflow horizontal e define a família de fontes.
+
+  .App:
+    - Centraliza o texto, define a cor de fundo, cor do texto, altura mínima e propriedades de flexbox para layout.
+
+  .App-header:
+    - Estiliza o cabeçalho com cor de fundo, padding, cor do texto, tamanho da fonte, sombra e propriedades de flexbox.
+
+  .App-header > h1:
+    - Adiciona margem à esquerda do título do cabeçalho.
+
+  .user-info:
+    - Estiliza a seção de informações do usuário com propriedades de flexbox e margem.
+
+  .user-data:
+    - Estiliza a seção de dados do usuário com propriedades de flexbox e margem.
+
+  .user-data > p:
+    - Estiliza parágrafos dentro dos dados do usuário com cor do texto, tamanho da fonte e margem.
+
+  .logout-button:
+    - Estiliza o botão de logout com cor de fundo, cor do texto, borda, padding, cursor e efeitos de hover.
+
+  .main-content:
+    - Define a área de conteúdo principal para usar layout de flexbox.
+
+  .sidebar:
+    - Estiliza a barra lateral com posição, altura, largura, propriedades de flexbox, padding, cor de fundo, borda, overflow e z-index.
+
+  .usuarios:
+    - Adiciona margem à seção de usuários.
+
+  .sidebar button:
+    - Estiliza botões da barra lateral com display, largura, padding, margem, alinhamento de texto, borda, cor de fundo, cor do texto, cursor, tamanho da fonte, borda arredondada e efeitos de transição.
+
+  .sidebar button:hover:
+    - Altera a cor de fundo ao passar o mouse.
+
+  .sidebar button.selected:
+    - Estiliza botões selecionados da barra lateral com cor de fundo, cor do texto e peso da fonte.
+
+  .content:
+    - Adiciona margem e padding à área de conteúdo.
+
+  .button-container:
+    - Estiliza o container de botões com propriedades de flexbox, gap, margem, posição e alinhamento.
+
+  .button-container button:
+    - Estiliza botões dentro do container de botões com padding, tamanho da fonte, borda, borda arredondada, cursor, cor de fundo, cor do texto e efeitos de transição.
+
+  .button-container button:hover:
+    - Altera a cor de fundo ao passar o mouse.
+
+  .sheet-data-container:
+    - Estiliza o container de dados da planilha com largura, overflow, sombra, cor de fundo e margem.
+
+  table:
+    - Define a largura da tabela, layout e colapso de borda.
+
+  th, td:
+    - Estiliza cabeçalhos e células da tabela com padding, alinhamento de texto, alinhamento vertical, borda, quebra de linha e propriedades de espaço em branco.
+
+  th:
+    - Estilos adicionais para cabeçalhos da tabela incluindo cor de fundo, cor do texto, peso da fonte, transformação de texto, tamanho da fonte, padding, espaço em branco e posição.
+
+  .header-content:
+    - Estiliza o conteúdo do cabeçalho com propriedades de flexbox.
+
+  .resize-handle:
+    - Estiliza a alça de redimensionamento com largura, altura, cursor, cor de fundo e posição.
+
+  th:hover::after, td:hover::after:
+    - Adiciona estilos de tooltip para cabeçalhos e células da tabela ao passar o mouse com conteúdo, posição, cor de fundo, cor do texto, padding, borda arredondada, espaço em branco, tamanho da fonte, eventos de ponteiro e z-index.
+
+  td:
+    - Estilos adicionais para células da tabela incluindo largura mínima, padding, alinhamento de texto, alinhamento vertical, borda, espaço em branco, overflow e overflow de texto.
+
+  tr:nth-child(even):
+    - Define a cor de fundo para linhas pares da tabela.
+
+  tr:hover:
+    - Altera a cor de fundo ao passar o mouse para linhas da tabela.
+
+  input[type="text"]:
+    - Estiliza campos de entrada de texto com largura, padding, borda, borda arredondada, box sizing e efeitos de transição.
+
+  input[type="text"]:focus:
+    - Altera a cor da borda e adiciona sombra ao focar em campos de entrada de texto.
+
+  .btn.excluir:
+    - Estiliza o botão de excluir com cor de fundo, cor do texto, padding, tamanho da fonte, borda, borda arredondada, cursor e efeitos de transição.
+
+  .btn.excluir:hover:
+    - Altera a cor de fundo e escala ao passar o mouse para o botão de excluir.
+
+  .filters:
+    - Estiliza a seção de filtros com propriedades de flexbox e gap.
+
+  .sidebar:
+    - Estilos adicionais para a barra lateral incluindo altura, largura, posição, topo, esquerda, cor de fundo, padding e margem.
+
+  .sidebar button:
+    - Estilos adicionais para botões da barra lateral incluindo padding, decoração de texto, tamanho da fonte, cor do texto, fundo, borda, alinhamento de texto, largura, cursor e efeitos de transição.
+
+  .sidebar button:hover:
+    - Altera a cor de fundo ao passar o mouse para botões da barra lateral.
+
+  .sidebar button.selected:
+    - Estilos adicionais para botões selecionados da barra lateral incluindo cor de fundo e cor do texto.
+
+  .main-content:
+    - Ajusta a margem para a área de conteúdo principal para considerar a largura da barra lateral.
+
+  .welcome-message:
+    - Estiliza a seção de mensagem de boas-vindas com alinhamento de texto e margem.
+
+  .welcome-message h2:
+    - Estiliza o título da mensagem de boas-vindas com tamanho da fonte e cor do texto.
+
+  .welcome-message p:
+    - Estiliza o parágrafo da mensagem de boas-vindas com tamanho da fonte e cor do texto.
+
+  .expanded-content:
+    - Estiliza o conteúdo expandido com tamanho de fonte menor.
+
+  .save-button:
+    - Estiliza o botão de salvar com cor de fundo, borda, cor do texto, padding, alinhamento de texto, decoração de texto, display, tamanho da fonte, margem, cursor, borda arredondada e efeitos de transição.
+
+  .save-button:hover:
+    - Altera a cor de fundo ao passar o mouse para o botão de salvar.
+
+  .select-atendido:
+    - Estiliza o campo select com padding, borda arredondada, borda, tamanho da fonte e efeitos de transição.
+
+  .select-atendido:focus:
+    - Altera a cor da borda e remove o outline ao focar no campo select.
+*/
 body {
   background-color: #f4f4f9;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  font-family: "Poppins", serif;
 }
 
 .App {
   text-align: center;
-  font-family: Arial, sans-serif;
   background-color: #f4f4f9;
   color: #333;
   min-height: 100vh;
@@ -16,7 +158,6 @@ body {
   align-items: center;
 }
 
-/* Cabeçalho */
 .App-header {
   background-color: #387c5c;
   padding: 20px;
@@ -27,6 +168,29 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.App-header > h1 {
+  margin-left: 40px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.user-data {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-right: 15px;
+}
+
+.user-data > p {
+  color: white;
+  font-size: 14px;
+  margin: 0;
 }
 
 .logout-button {
@@ -40,25 +204,33 @@ body {
 }
 
 .logout-button:hover {
-  background-color: darkred;
+  background-color: rgb(230, 36, 36);
 }
 
-/* Layout principal */
 .main-content {
   display: flex;
-  width: 100%;
+  flex-direction: row;
 }
 
-/* Barra lateral */
 .sidebar {
+  position: sticky;
+  left: 0;
+  height: 100vh;
+  width: 210px;
   display: flex;
   flex-direction: column;
   padding: 20px;
   background-color: #f4f4f9;
   border-right: 1px solid #ddd;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
-/* Estilo geral do botão */
+.usuarios {
+  margin-right: 20px;
+  margin-top: 40px;
+}
+
 .sidebar button {
   display: block;
   width: 100%;
@@ -81,7 +253,7 @@ body {
 
 /* Botão selecionado */
 .sidebar button.selected {
-  background-color: #4CAF50; /* Cor de destaque (verde) */
+  background-color: #4caf50; /* Cor de destaque (verde) */
   color: white; /* Cor do texto para contraste */
   font-weight: bold;
 }
@@ -108,13 +280,12 @@ body {
   background-color: #4b8263;
 }
 
-/* Container de conteúdo */
 .content {
-  flex: 1;
+  margin-left: 10px;
   padding: 20px;
+  flex: 1;
 }
 
-/* Botões de ação */
 .button-container {
   display: flex;
   justify-content: flex-end; /* Alinha à direita */
@@ -138,7 +309,7 @@ body {
 }
 
 .button-container button:hover {
-  background-color: #4CAF50; /* Efeito ao passar o mouse */
+  background-color: #4caf50; /* Efeito ao passar o mouse */
 }
 
 /* Container de dados da planilha */
@@ -146,21 +317,20 @@ body {
   width: 100%;
   overflow-x: auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   background-color: #f8f4f4;
   margin-top: 20px;
 }
 
 table {
   width: 100%;
-  table-layout: auto; /* Deixe as colunas se ajustarem ao conteúdo */
+  table-layout: auto;
   border-collapse: collapse;
 }
 
-/* Estilo das colunas de dados */
-th, td {
+th,
+td {
   padding: 16px; /* Aumentando o padding para mais espaço dentro das células */
-  text-align: left;
+  text-align: center;
   vertical-align: middle;
   border: 1px solid #e0e0e0;
   word-wrap: break-word; /* Permite quebra de linha */
@@ -198,7 +368,9 @@ th {
 
 /* Tooltip para mostrar texto completo ao passar o mouse */
 th:hover::after {
-  content: attr(data-fullname); /* Usa o atributo data-fullname para o texto completo */
+  content: attr(
+    data-fullname
+  ); /* Usa o atributo data-fullname para o texto completo */
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -215,7 +387,9 @@ th:hover::after {
 
 /* Tooltip para mostrar texto completo ao passar o mouse nas células */
 td:hover::after {
-  content: attr(data-fulltext); /* Usa o atributo data-fulltext para o texto completo */
+  content: attr(
+    data-fulltext
+  ); /* Usa o atributo data-fulltext para o texto completo */
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -275,10 +449,110 @@ input[type="text"]:focus {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease;
 }
 
 .btn.excluir:hover {
-  background-color: #e53935; 
+  background-color: #e53935;
   transform: scale(1.05);
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  padding-top: 20px;
+  margin-top: 175px; 
+}
+
+.sidebar button {
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar button:hover {
+  background-color: #575757;
+}
+
+.sidebar button.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.main-content {
+  margin-left: 220px; /* Ajuste para a largura da sidebar */
+}
+
+.welcome-message {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.welcome-message h2 {
+  font-size: 80px;
+  color: #387c5c;
+}
+
+.welcome-message p {
+  font-size: 80px;
+  color: #555;
+}
+
+.expanded-content {
+  font-size: 0.4em; 
+}
+
+.save-button {
+  background-color: #4CAF50; /* Verde */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.select-atendido {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.select-atendido:focus {
+  border-color: #4CAF50;
+  outline: none;
 }

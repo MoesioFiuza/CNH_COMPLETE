@@ -7,7 +7,8 @@ body {
 
 .base-de-dados-container {
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", serif;
+  margin-left: -40px;
 }
 
 /* Ajustando a tabela */
@@ -22,13 +23,14 @@ body {
 .base-dados-table td {
   border: 1px solid #ddd;
   padding: 10px;
-  text-align: left;
-  word-wrap: break-word; /* Quebra de palavras longas */
-  position: relative; /* Necessário para o resizer */
+  text-align: center;
+  font-size: 11px;
+  word-wrap: break-word;
+  position: relative;
 }
 
 .base-dados-table th {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   text-transform: uppercase;
 }
@@ -51,7 +53,7 @@ body {
 
 .base-dados-table input:focus,
 .base-dados-table select:focus {
-  border-color: #4CAF50;
+  border-color: #4caf50;
   outline: none;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
@@ -74,7 +76,8 @@ body {
 
 /* Botões */
 .button-container {
-  margin-top: 20px;
+  margin-top: 70px;
+  margin-right: 40px;
   display: flex;
   justify-content: flex-start;
   gap: 10px;
@@ -84,7 +87,7 @@ body {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   cursor: pointer;
   font-size: 14px;
@@ -96,6 +99,21 @@ body {
   background-color: #45a049;
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-row-button {
+  margin-top: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+}
+
+.add-row-button:hover {
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Ajustando largura das colunas */
@@ -176,4 +194,85 @@ body {
     font-size: 12px;
     padding: 8px 15px;
   }
+}
+
+/* Estilos para os filtros */
+.filters select,
+.filters input {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+  background-color: transparent;
+}
+
+.filters select:focus,
+.filters input:focus {
+  border-color: #4caf50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.base-dados-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #4caf50; /* ou outra cor de fundo que desejar */
+  z-index: 1;
+}
+
+/* Estilos para paginação */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.pagination-button {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.pagination-info {
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.pagination-goto {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  font-size: 14px;
+}
+
+.pagination-goto select {
+  margin-left: 5px;
+  padding: 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Contador de linhas */
+.row-count {
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 10px;
 }
