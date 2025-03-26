@@ -279,6 +279,6 @@ input[type="text"]:focus {
 }
 
 .btn.excluir:hover {
-  background-color: #e53935; /* Cor mais escura ao passar o mouse */
+  background-color: #e53935; 
   transform: scale(1.05);
 }

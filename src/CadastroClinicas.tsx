@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './CadastroClinicas.css';
 
+
+// Definição da interface RegionalData para tipar os dados de município e regional
 interface RegionalData {
   municipio: string;
   regional: string;
 }
 
+// Componente funcional CadastroClinicas
 const CadastroClinicas: React.FC = () => {
   const [clinicasData, setClinicasData] = useState<string[][]>([['', '', '', '', '', '', '']]);
   const [regionais, setRegionais] = useState<RegionalData[]>([]);
@@ -14,6 +17,8 @@ const CadastroClinicas: React.FC = () => {
   const [selectedCity, setSelectedCity] = useState<string>('');
   const [selectedRegional, setSelectedRegional] = useState<string>('');
 
+
+  // Função para buscar os dados das clínicas
   const fetchClinicasData = async () => {
     setIsLoading(true);
     try {
@@ -32,6 +37,8 @@ const CadastroClinicas: React.FC = () => {
     }
   };
 
+
+  // Função para buscar os dados das regionais a partir de um CSV externo
   const fetchRegionais = async () => {
     setIsLoading(true);
     try {

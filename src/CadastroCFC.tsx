@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './CadastroClinicas.css';
 
+
+// Define a interface para os dados regionais
 interface RegionalData {
   municipio: string;
   regional: string;
 }
 
+// Componente principal
 const CadastroClinicas: React.FC = () => {
   const [clinicasData, setClinicasData] = useState<string[][]>([['', '', '', '', '', '', '']]);
   const [regionais, setRegionais] = useState<RegionalData[]>([]);
@@ -14,6 +17,7 @@ const CadastroClinicas: React.FC = () => {
   const [selectedCity, setSelectedCity] = useState<string>('');
   const [selectedRegional, setSelectedRegional] = useState<string>('');
 
+  // Função para carregar os dados da planilha
   const fetchClinicasData = async () => {
     try {
       const response = await fetch('http://127.0.0.1:8000/obter-planilha?aba=Cadastro Clínicas');
@@ -29,6 +33,7 @@ const CadastroClinicas: React.FC = () => {
     }
   };
 
+  // Função para buscar dados regionais na planilha
   const fetchRegionais = async () => {
     try {
       const response = await fetch(
@@ -45,7 +50,7 @@ const CadastroClinicas: React.FC = () => {
       console.error('Erro ao carregar regionais:', error);
     }
   };
-
+  // Função para lidar com mudanças nos inputs
   const handleInputChange = (rowIndex: number, cellIndex: number, value: string) => {
     const newData = [...clinicasData];
     newData[rowIndex][cellIndex] = value;
@@ -58,6 +63,7 @@ const CadastroClinicas: React.FC = () => {
     setClinicasData(newData);
   };
 
+  // Função para adicionar uma nova linha
   const addNewRow = () => {
     setClinicasData([...clinicasData, ['', '', '', '', '', '', '']]);
     setSelectedCity('');
@@ -97,6 +103,10 @@ const CadastroClinicas: React.FC = () => {
     return cityMatches && regionalMatches;
   });
 
+<<<<<<< HEAD
+=======
+  // Função para lidar com o redimensionamento das colunas
+>>>>>>> 58b00338f2816f49861cb261b2d46c68b124b8dc
   const handleResize = (index: number, e: React.MouseEvent) => {
     const startX = e.clientX;
     const startWidth = columnWidths[index];
@@ -116,7 +126,12 @@ const CadastroClinicas: React.FC = () => {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   };
+<<<<<<< HEAD
 
+=======
+  
+  // Função para lidar com a mudança de cidade selecionada
+>>>>>>> 58b00338f2816f49861cb261b2d46c68b124b8dc
   const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCity(e.target.value);
     setSelectedRegional('');
